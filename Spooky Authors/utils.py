@@ -26,7 +26,7 @@ def predictions(test_x, nBS):
 
 def NaiveBayes(dist):
     """A simple naive bayes classifier that takes as input a dictionary of
-    CountingProbDist objects and classifies items according to these distributions.
+    Counter distributions and classifies items according to these distributions.
     The input dictionary is in the following form:
         ClassName: Counter"""
     attr_dist = {c_name: count_prob for c_name, count_prob in dist.items()}
@@ -38,6 +38,7 @@ def NaiveBayes(dist):
             attr = attr_dist[target]
             return product([attr[a] for a in example])
 
+        # Find percentile
         pred = {t: class_prob(t) for t in dist.keys()}
         total = sum(pred.values())
 
