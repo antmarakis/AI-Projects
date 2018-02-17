@@ -61,7 +61,7 @@ def product(numbers):
 
 def remove_stopwords(sentence):
     # Not used
-    words = word_tokenize(sentence.translate(table))
+    words = word_tokenize(sentence)
     return ' '.join([w for w in words if w not in stopwords.words('english')])
 
 
