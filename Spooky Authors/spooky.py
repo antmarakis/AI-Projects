@@ -13,4 +13,4 @@ dist = {'EAP': c_eap, 'HPL': c_hpl, 'MWS': c_mws}
 nBS = NaiveBayes(dist)
 
 submission = predictions(test_x, nBS)
-submission.to_csv('submission.csv', index=False, columns=['id', 'EAP', 'HPL', 'MWS'], quoting=csv.QUOTE_NONNUMERIC)
+submission.to_csv('submission.csv', index=False)
