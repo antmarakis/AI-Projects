@@ -4,7 +4,7 @@ import random
 import string
 import pandas as pd
 from collections import Counter, defaultdict
-from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.corpus import brown
 
@@ -49,15 +49,6 @@ def NaiveBayes(dist):
         return pred
 
     return predict
-
-
-def weighted_sampler(seq, weights):
-    """Return a random-sample function that picks from seq weighted by weights."""
-    totals = []
-    for w in weights:
-        totals.append(w + totals[-1] if totals else w)
-
-    return lambda: seq[bisect.bisect(totals, random.uniform(0, totals[-1]))]
 
 
 def product(numbers):
@@ -105,11 +96,11 @@ def parse_text(X):
         print(i)
         
         if a == 'EAP':
-            EAP += " " + t
+            EAP += " " + t.lower()
         elif a == 'HPL':
-            HPL += " " + t
+            HPL += " " + t.lower()
         elif a == 'MWS':
-            MWS += " " + t
+            MWS += " " + t.lower()
 
     write_to_file('eap.txt', EAP)
     write_to_file('hpl.txt', HPL)
