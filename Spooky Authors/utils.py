@@ -60,11 +60,13 @@ def product(numbers):
 
 
 def remove_stopwords(sentence):
+    # Not used
     words = word_tokenize(sentence.translate(table))
     return ' '.join([w for w in words if w not in stopwords.words('english')])
 
 
 def remove_most_common(sentence):
+    # Not used
     words = word_tokenize(sentence)
     return ' '.join([w for w in words if w not in common_words])
 
@@ -102,21 +104,4 @@ def parse_text(X):
         elif a == 'MWS':
             MWS += " " + t.lower()
 
-    write_to_file('eap.txt', EAP)
-    write_to_file('hpl.txt', HPL)
-    write_to_file('mws.txt', MWS)
-
-
-def write_to_file(fname, text):
-    f = open(fname, 'w', encoding='utf-8')
-    f.write(text)
-    f.close()
-
-
-def read_from_file(fnames):
-    texts = []
-    for fname in fnames:
-        f = open(fname, 'r', encoding='utf-8')
-        texts.append(word_tokenize(f.read()))
-        f.close()
-    return texts
+    return word_tokenize(EAP), word_tokenize(HPL), word_tokenize(MWS)
