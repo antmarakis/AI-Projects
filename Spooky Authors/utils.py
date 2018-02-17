@@ -14,7 +14,6 @@ from nltk.corpus import brown
 
 def predictions(test_x, nBS):
     d = []
-    indices = ['"id"', '"EAP"', '"HPL"', '"MWS"']
     for index, row in test_x.iterrows():
         print(index)
         i, t = row['id'], row['text']
@@ -22,6 +21,10 @@ def predictions(test_x, nBS):
         d.append({'id': i, 'EAP': p['EAP'], 'HPL': p['HPL'], 'MWS': p['MWS']})
     
     return pd.DataFrame(data=d)
+
+
+def recognize(sentence, nBS):
+    return nBS(word_tokenize(sentence.lower()))
 
 
 def NaiveBayes(dist):
@@ -53,7 +56,6 @@ def NaiveBayes(dist):
 
 
 def product(numbers):
-    """Return the product of the numbers, e.g. product([2, 3, 10]) == 60"""
     result = 1
     for x in numbers:
         result *= x
@@ -70,13 +72,6 @@ def remove_most_common(sentence):
     # Not used
     words = word_tokenize(sentence)
     return ' '.join([w for w in words if w not in common_words])
-
-
-def recognize(sentence, nBS):
-    sentence = sentence.lower()
-    sentence_words = word_tokenize(sentence)
-    
-    return nBS(sentence_words)
 
 
 def create_dist(text):
