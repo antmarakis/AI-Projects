@@ -7,6 +7,10 @@ from collections import Counter, defaultdict
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.corpus import brown
+import decimal
+from decimal import Decimal
+
+decimal.getcontext().prec = 100
 
 # table = str.maketrans({key: None for key in string.punctuation})
 # common_words = [w for w, _ in Counter(brown.words()).most_common(75)]
@@ -27,39 +31,36 @@ def recognize(sentence, nBS):
     return nBS(word_tokenize(sentence.lower()))
 
 
+def precise_product(numbers):
+    result = 1
+    for x in numbers:
+        result *= Decimal(x)
+    return result
+
+
 def NaiveBayes(dist):
     """A simple naive bayes classifier that takes as input a dictionary of
-    Counter distributions and classifies items according to these distributions.
+    Counter distributions and can then be used to find the probability
+    of a given item belonging to each class.
     The input dictionary is in the following form:
         ClassName: Counter"""
     attr_dist = {c_name: count_prob for c_name, count_prob in dist.items()}
 
     def predict(example):
-        """Predict the target value for example. Calculate probabilities for each
-        class and pick the max."""
-        def class_prob(target):
+        """Predict the probabilities for each class."""
+        def class_prob(target, e):
             attr = attr_dist[target]
-            return product([attr[a] for a in example])
+            return precise_product([attr[a] for a in e])
 
-        # Find percentile
-        pred = {t: class_prob(t) for t in dist.keys()}
+        pred = {t: class_prob(t, example) for t in dist.keys()}
+
         total = sum(pred.values())
+        for k, v in pred.items():
+            pred[k] = v / total
 
-        if total == 0:
-            pred = predict(example[:int(2*len(example)/3)])
-        else:
-            for k, v in pred.items():
-                pred[k] = v / total
         return pred
 
     return predict
-
-
-def product(numbers):
-    result = 1
-    for x in numbers:
-        result *= x
-    return result
 
 
 def remove_stopwords(sentence):
