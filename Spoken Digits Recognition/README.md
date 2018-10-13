@@ -60,15 +60,44 @@ For the recognition of digits in new recordings, the following process is follow
 
 # Results
 
+The neural network is trained for 10 epochs, with data passed in one-by-one (batch size is 1). The training accuracy score reaches around 95%, while the validation set usually reaches around 85%.
+
+The model was tested on new data, which can be found in the 'to_recognize' folder. All recordings of Bruce (which is a concatenation of some random single digit recordings of his) can be recognized in great accuracy. For our own recordings, the accuracy is found below for the model weights we have stored in the 'model_weights' folder:
+
+‘recording_9’: 7/9  
+‘recording_10a’: 7/10  
+‘recording_10b’: 8/10  
+‘recording_10c’: 10/10
+
+# Project Structure
+
+Documentation for files and folders follows:
+
+* `process_dataset.py`: Creates the training and validation sets, with the necessary features.
+
+* `train_model.py`: Neural network training.
+
+* `evaluate.py`: Performance analysis for validation set. Shows how well the model performed for each digit.
+
+* `create_audio.py`: Creates recordings from the dataset files, by concatenating random single digit recordings.
+
+* `recognize.py`: Takes as input an audio file and outputs its digits.
+
+* `utils.py`: Contains utility functions used in the rest of the scripts.
+
+* `model_weights`: A folder where model weights will be saved after training.
+
+* `np_mfcc`: `Numpy` arrays are stored here for the processed dataset.
+
+* `spoken_numbers`: Contains the dataset of speakers (not that I recorded myself some digits to add to this set).
+
+* `to_recognize`: A folder containing some sample recordings for recognition.
+
+* `Words`: When we try to recognize digits in a recording, we first split it into separate words. These words are stored in this folder. After the recognition, we do not delete this folder for debugging purposes.
+
+# Instructions
 
 
 
 
-
-
-
-
-
-
-
-*NOTE: This project is for an undergraduate assignment I completed.*
+*NOTE: This project is for an undergraduate assignment I completed. Some of the test recordings came from some friends of mine.*
