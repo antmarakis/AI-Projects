@@ -4,7 +4,7 @@ In this problem we are tasked with recognizing spoken digits (0-9) in English. T
 
 # Before You Start
 
-Before you begin, you need to unzip `spoken_numbers.7z`. It contains all the data we will use, which comes from [Pannous.net](pannous.net/spoken_numbers.zip). Also, if you don't want to pre-process the data yourself, you must unzip `X_train.7z` from the `np_mfcc` folder. It contains the data in `numpy` arrays, needed for the training.
+Before you begin, you need to unzip `spoken_numbers.7z`. It contains all the data we will use, which comes from [Pannous.net](pannous.net/spoken_numbers.zip) and [Free Spoken Digit Dataset](https://github.com/Jakobovski/free-spoken-digit-dataset). Also, if you don't want to pre-process the data yourself, you must unzip `X_train.7z` from the `np_mfcc` folder. It contains the data in `numpy` arrays, needed for the training.
 
 # Overview
 
@@ -20,7 +20,7 @@ The steps for this task of Automatic Speech Recognition are the following:
 
 # Dataset
 
-The dataset contains recordings from 15 speakers (note that one user speaks German, so we removed her), sampled at a rate of 22050 and with one channel (mono). The recordings are available in 19 different speeds. In total, there are about 2500 recordings, from both genders. Because, though, some recordings are too fast/slow, we remove them to have a smoother learning process. Finally, we hold one speaker for validation (Bruce).
+The dataset contains recordings from speakers sampled at a rate of 22050 and with one channel (mono). The recordings are available in different speeds and include audio files from both genders. From this collection of recordings, we hold one speaker for validation (Bruce).
 
 Firstly, we read our data using `Scipy` and we filter them using a Butterworth filter (bidirectional). The bidirectional filtering results in no phase created in the signals.
 
