@@ -97,7 +97,63 @@ Documentation for files and folders follows:
 
 # Instructions
 
+* To check the accuracy of a network on the validation set, run this in the command line:
 
+`python evaluate.py model_weights.h5`
 
+or just
 
-*NOTE: This project is for an undergraduate assignment I completed. Some of the test recordings came from some friends of mine.*
+`python evaluate.py`
+
+* To recognize audio files (either your own or those in the 'to_recognize' folder):
+
+`python recognize.py file_name.wav model_weights.h5`
+
+or simply
+
+`python recognize.py file_name.wav`
+
+Note that the files need to be `.wav` files, with a space of about 0.2 seconds between each digit.
+
+* TO create an audio file from the dataset, use:
+
+`python create_audio.py n Boolean`
+
+where `n` is the number of words and `Boolean` a boolean value (as recognized by Python, that is, `True`/`False`, `0`/`1` etc.).
+
+Alternatively
+
+`python create_audio.py`
+
+With `create_audio.py` a new file named `audio_sample.wav` will be created in the file directory.
+
+* To train a model from scratch you can run the scripts `process_dataset.py` and `train_model.py`. The `train_model.py` script can take as input the number of epochs.
+
+```
+python process_dataset.py
+python train_model.py n
+```
+
+where `n` is the number of epochs.
+
+---
+
+NOTE: More information on execution of scripts can be found in the header of each script.
+
+# Pre-requisites
+
+For the development of this project, `Python 3.6.4` was used. To run the whole code, the following libraries are used:
+
+* `Keras`
+* `Numpy`
+* `Pandas`
+* `Scipy`
+* [`Pydub`](http://pydub.com/)
+* `Matplotlib` (for signal visualization, something which can be skipped)
+* [`python_speech_features`](https://python-speech-features.readthedocs.io/en/latest/)
+
+Also, you are going to need [`Sox`](http://sox.sourceforge.net/) for the audio file resampling.
+
+# Final Note
+
+*This project is for an undergraduate assignment I completed. Some of the test recordings came from some friends of mine.*
