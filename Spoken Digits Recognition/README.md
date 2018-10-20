@@ -115,7 +115,7 @@ or simply
 
 Note that the files need to be `.wav` files, with a space of about 0.2 seconds between each digit.
 
-* TO create an audio file from the dataset, use:
+* To create an audio file from the dataset, use:
 
 `python create_audio.py n Boolean`
 
